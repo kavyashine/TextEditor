@@ -1,0 +1,89 @@
+<html>
+<head>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<!-- Compiled and minified CSS -->
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+
+  	<!-- Compiled and minified JavaScript -->
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
+	<title>Kavya's TextEditor Project</title>
+	<h1 align="center" style="color: blue">A SIMPLE TEXT EDITOR</h1>
+	<hr align="center" style="width: 900px">
+	<script type="text/javascript">
+		
+		function enableEditMode(){
+			tf.document.designMode = "On";
+		}
+		function execCmd(cmd){
+			tf.document.execCommand(cmd, false, null);
+			tf.document.execCommand(insertParagraph, false, null);
+		}
+		function execCmd(cmd, color){
+			tf.document.execCommand(cmd, false, color);
+		}
+		function print_text(){
+			var text = document.getElementById('tf').contentWindow.document.body.innerHTML;             // get text from the iframe and store it in var text.
+			document.getElementById("display-text").innerHTML = text;									// display text in the div.
+		}	
+		function change_font(cmd, fontName){
+			tf.document.execCommand(cmd, false, fontName);
+		}
+
+			
+
+	</script>
+</head>
+
+<div class="jumbotron container" style="height: 800px;background-color: white">
+
+<body onload="enableEditMode();" style="background-color: #FFF271">																			
+<!-- This function enables the design mode so that we can manipulate the text by execCommand and perform operations such as bold, italic, underline, create link, change color etc. -->
+	
+	<div align="center">
+		<br>
+		<br>
+		<button onclick="execCmd('bold');">B</button>
+		<button onclick="execCmd('italic');">I</button>
+		<button onclick="execCmd('underline');">U</button>
+		<button onclick="execCmd('superscript');">sup</button>
+		<button onclick="execCmd('subscript');">sub</button>
+		<button onclick="execCmd('fontName', 'Calibri')">Calibri</button>
+		<button onclick="execCmd('fontName', 'Comic Sans MS')">Comic Sans</button>
+		<button onclick="execCmd('foreColor', 'rgba(255, 0, 0, 1)');" style="background-color: red" >R</button>
+		<button onclick="execCmd('foreColor', 'rgba(0, 255, 0, 1)');" style="background-color: green" >G</button>
+		<button onclick="execCmd('foreColor', 'rgba(0, 0, 255, 1)');" style="background-color: blue" >B</button>
+		<button onclick="execCmd('foreColor', 'rgba(255, 255, 0, 1)');" style="background-color: brown" >Br</button>
+		<button onclick="execCmd('foreColor', 'rgba(255, 0, 255, 1)');" style="background-color: purple" >R</button>
+		<button onclick="execCmd('foreColor', 'rgba(255, 242, 213, 1)');" style="background-color: #FFF271" >Y</button>
+
+	</div>
+	<br>
+	<div align="center">
+	<iframe name="tf" id="tf" placeholder="Enter text" width="700" height="300" align="center"></iframe><br />
+	<br>
+	<button onclick="print_text();">Display</button><br>
+	<hr align="center" style="width: 900px">
+	<br>
+	<p class="container" id="display-text" contenteditable="true"></p>
+	</div>
+
+	</div>
+	</body>
+	</div>
+	<style>
+		p.container{
+			width: 700px;
+			height: 200px;
+		}
+	</style>
+</body>
+</html>	
